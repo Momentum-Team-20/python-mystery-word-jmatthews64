@@ -16,9 +16,23 @@ def choose_random_word(file):
     return answer
 
 
+# This function will recieve and validate user input to pass back for valuation against the answer
+def accept_user_guess():
+    user_guess = input("Please guess a letter: ").upper()
+    if len(user_guess) == 1:
+        return user_guess
+    else:
+        print("Please guess only 1 letter at a time")
+        corrected_guess = accept_user_guess()
+        return corrected_guess
+
+
 def play_game(file):
     answer = choose_random_word(file)
     print(answer)
+    guess = accept_user_guess()
+    print(guess)
+
 
 if __name__ == "__main__":
     import argparse
