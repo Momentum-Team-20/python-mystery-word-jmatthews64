@@ -19,7 +19,7 @@ def choose_random_word(file):
 # This function will recieve and validate user input to pass back for valuation against the answer
 def accept_user_guess():
     user_guess = input("Please guess a letter: ").upper()
-    if len(user_guess) == 1:
+    if len(user_guess) == 1 and user_guess.isalpha():
         return user_guess
     else:
         print("Please guess only 1 letter at a time")
