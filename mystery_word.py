@@ -27,9 +27,20 @@ def accept_user_guess():
         return corrected_guess
 
 
+# This function will take the answer and make it into a list of characters
+def create_answer_list(answer):
+    new_list = []
+    for character in answer:
+        new_list.append(character)
+    return new_list
+
+
+# Play the game
 def play_game(file):
     answer = choose_random_word(file)
     print(answer)
+    answer_list = create_answer_list(answer)
+    print(answer_list)
     guess = accept_user_guess()
     print(guess)
 
