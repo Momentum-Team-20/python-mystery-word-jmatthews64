@@ -75,9 +75,14 @@ def is_correct(guess, answer_list, display_list):
         for each in guess_indexes:
             new_list[each] = (guess)
         print(new_list)
+        # Create new string to display for the user with updated charaters and return it
+        new_display = ""
+        for each in new_list:
+            new_display += f"{each} "
+        return new_display
     else:
         print("Incorrect!")
-        
+
 
 # Play the game
 def play_game(file):
@@ -93,7 +98,8 @@ def play_game(file):
     not_guessed = has_been_guessed(guess)
     print("Has not been guess: ", not_guessed)
     print("List of guessed: ", already_guessed)
-    is_correct(not_guessed, answer_list, new_answer_display)
+    updated_display = is_correct(not_guessed, answer_list, new_answer_display)
+    print(updated_display)
 
 
 if __name__ == "__main__":
