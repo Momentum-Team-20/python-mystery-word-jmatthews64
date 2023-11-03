@@ -72,8 +72,9 @@ def is_correct(guess, answer_list, display_list):
         for j in range(0,len(guess_indexes)):
             guess_indexes[j] = int(guess_indexes[j])
         # Replace the values at correct indices in new_list
-        #new_list[guess_indexes] = (guess, " ")
-        #print(new_list)
+        for each in guess_indexes:
+            new_list[each] = (guess)
+        print(new_list)
     else:
         print("Incorrect!")
         
