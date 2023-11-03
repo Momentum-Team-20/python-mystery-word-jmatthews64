@@ -1,6 +1,7 @@
 import random
 
 already_guessed = []
+guess_count = 8
 
 
 # This function selects a word at random from the file it is passed
@@ -38,7 +39,6 @@ def create_answer_list(answer):
 # Convert the mystery word to a string of space separated underscores
 def convert_answer(answer):
     answer_length = len(answer)
-    print(answer_length)
     new_display = []
     while answer_length > 0:
         new_display.append("_ ")
@@ -61,8 +61,21 @@ def has_been_guessed(guess):
         return not_guessed
 
 
+# Create a function to validate if the guess is correct
+def is_correct(guess, answer_list, display_list):
+    if guess in answer_list:
+        print("Correct!")
+        new_list = display_list.split()
+        # Find the index values of the correct letter
+        guess_indexes = [i for i in range(len(answer_list)) if answer_list[i] == guess]
+        print(guess_indexes)
+    else:
+        print("Incorrect!")
+        
+
 # Play the game
 def play_game(file):
+    print("Incorrect Guesses Remaining: ", guess_count)
     answer = choose_random_word(file)
     print(answer)
     answer_list = create_answer_list(answer)
@@ -74,6 +87,7 @@ def play_game(file):
     not_guessed = has_been_guessed(guess)
     print("Has not been guess: ", not_guessed)
     print("List of guessed: ", already_guessed)
+    is_correct(not_guessed, answer_list, new_answer_display)
 
 
 if __name__ == "__main__":
