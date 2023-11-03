@@ -1,6 +1,6 @@
 import random
 
-ALPHABET_LIST = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+already_guessed = []
 
 
 # This function selects a word at random from the file it is passed
@@ -49,6 +49,18 @@ def convert_answer(answer):
     return new_display_string
 
 
+# Function that will check to see if the letter has already been guessed
+def has_been_guessed(guess):
+    if guess not in already_guessed:
+        already_guessed.append(guess)
+        return guess
+    else:
+        print("You've already guessed: ", guess)
+        new_guess = accept_user_guess()
+        not_guessed = has_been_guessed(new_guess)
+        return not_guessed
+
+
 # Play the game
 def play_game(file):
     answer = choose_random_word(file)
@@ -59,6 +71,9 @@ def play_game(file):
     print(new_answer_display)
     guess = accept_user_guess()
     print(guess)
+    not_guessed = has_been_guessed(guess)
+    print("Has not been guess: ", not_guessed)
+    print("List of guessed: ", already_guessed)
 
 
 if __name__ == "__main__":
