@@ -55,6 +55,7 @@ def has_been_guessed(guess):
         return guess
     else:
         print("You've already guessed: ", guess)
+        print(" ")
         new_guess = accept_user_guess()
         not_guessed = has_been_guessed(new_guess)
         return not_guessed
@@ -95,9 +96,7 @@ def play_game(file):
     guess_count = 8
     print("Incorrect Guesses Remaining: ", guess_count)
     answer = choose_random_word(file)
-    print(answer)
     answer_list = create_answer_list(answer)
-    print(answer_list)
     new_answer_display = convert_answer(answer_list)
     print(new_answer_display)
     updated_display = new_answer_display
@@ -109,6 +108,7 @@ def play_game(file):
         print(updated_display)
         guess_count = update_guess_count(guess_count, answer_list, not_guessed)
         print("Incorrect guesses remaining: ", guess_count)
+        print(" ")
     if guess_count == 0:
         print("You lose!  The correct word was: ", answer)
     else:
