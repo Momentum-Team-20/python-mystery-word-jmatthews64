@@ -68,7 +68,12 @@ def is_correct(guess, answer_list, display_list):
         new_list = display_list.split()
         # Find the index values of the correct letter
         guess_indexes = [i for i in range(len(answer_list)) if answer_list[i] == guess]
-        print(guess_indexes)
+        # Convert indices into int()
+        for j in range(0,len(guess_indexes)):
+            guess_indexes[j] = int(guess_indexes[j])
+        # Replace the values at correct indices in new_list
+        #new_list[guess_indexes] = (guess, " ")
+        #print(new_list)
     else:
         print("Incorrect!")
         
