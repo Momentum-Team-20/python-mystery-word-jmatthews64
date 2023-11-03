@@ -82,6 +82,13 @@ def is_correct(guess, answer_list, display_list):
     else:
         print("Incorrect!")
         return display_list
+    
+
+# Update the guess count on an incorrect guess
+def update_guess_count(guess_count, answer_list, guess):
+    if guess not in answer_list:
+        guess_count -= 1
+    return guess_count
 
 
 # Play the game
@@ -95,15 +102,18 @@ def play_game(file):
     new_answer_display = convert_answer(answer_list)
     print(new_answer_display)
     updated_display = new_answer_display
-    while '_' in updated_display:
+    # Loop through the interface until all letters guessed or guess_count = 0
+    while '_' in updated_display and guess_count != 0:
         guess = accept_user_guess()
         print(guess)
         not_guessed = has_been_guessed(guess)
         print("Has not been guess: ", not_guessed)
         print("List of guessed: ", already_guessed)
         updated_display = is_correct(not_guessed, answer_list, updated_display)
-    print("Out of while: ", updated_display)
-    
+        guess_count = update_guess_count(guess_count, answer_list, not_guessed)
+        print(guess_count)
+    if guess_count == 0:
+        print("You lose!  The correct word was: ", answer)
     
 
 
