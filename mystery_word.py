@@ -104,14 +104,11 @@ def play_game(file):
     # Loop through the interface until all letters guessed or guess_count = 0
     while '_' in updated_display and guess_count != 0:
         guess = accept_user_guess()
-        print(guess)
         not_guessed = has_been_guessed(guess)
-        print("Has not been guess: ", not_guessed)
-        print("List of guessed: ", already_guessed)
         updated_display = is_correct(not_guessed, answer_list, updated_display)
         print(updated_display)
         guess_count = update_guess_count(guess_count, answer_list, not_guessed)
-        print(guess_count)
+        print("Incorrect guesses remaining: ", guess_count)
     if guess_count == 0:
         print("You lose!  The correct word was: ", answer)
     else:
