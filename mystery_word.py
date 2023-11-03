@@ -1,7 +1,6 @@
 import random
 
 already_guessed = []
-guess_count = 8
 
 
 # This function selects a word at random from the file it is passed
@@ -82,10 +81,12 @@ def is_correct(guess, answer_list, display_list):
         return new_display
     else:
         print("Incorrect!")
+        return display_list
 
 
 # Play the game
 def play_game(file):
+    guess_count = 8
     print("Incorrect Guesses Remaining: ", guess_count)
     answer = choose_random_word(file)
     print(answer)
@@ -93,13 +94,17 @@ def play_game(file):
     print(answer_list)
     new_answer_display = convert_answer(answer_list)
     print(new_answer_display)
-    guess = accept_user_guess()
-    print(guess)
-    not_guessed = has_been_guessed(guess)
-    print("Has not been guess: ", not_guessed)
-    print("List of guessed: ", already_guessed)
-    updated_display = is_correct(not_guessed, answer_list, new_answer_display)
-    print(updated_display)
+    updated_display = new_answer_display
+    while '_' in updated_display:
+        guess = accept_user_guess()
+        print(guess)
+        not_guessed = has_been_guessed(guess)
+        print("Has not been guess: ", not_guessed)
+        print("List of guessed: ", already_guessed)
+        updated_display = is_correct(not_guessed, answer_list, updated_display)
+    print("Out of while: ", updated_display)
+    
+    
 
 
 if __name__ == "__main__":
