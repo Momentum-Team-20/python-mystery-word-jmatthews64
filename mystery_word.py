@@ -35,12 +35,28 @@ def create_answer_list(answer):
     return new_list
 
 
+# Convert the mystery word to a string of space separated underscores
+def convert_answer(answer):
+    answer_length = len(answer)
+    print(answer_length)
+    new_display = []
+    while answer_length > 0:
+        new_display.append("_ ")
+        answer_length -= 1
+    new_display_string = ""
+    for each in new_display:
+        new_display_string += each
+    return new_display_string
+
+
 # Play the game
 def play_game(file):
     answer = choose_random_word(file)
     print(answer)
     answer_list = create_answer_list(answer)
     print(answer_list)
+    new_answer_display = convert_answer(answer_list)
+    print(new_answer_display)
     guess = accept_user_guess()
     print(guess)
 
@@ -60,4 +76,3 @@ if __name__ == "__main__":
     else:
         print(f"{file} does not exist!")
         exit(1)
-    
