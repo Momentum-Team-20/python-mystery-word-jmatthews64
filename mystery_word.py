@@ -3,16 +3,36 @@ import random
 game_on = True
 
 
+# Function to allow the user to select a level and validate the selection
+def select_level():
+    level = input("1. (Easy), 2. (Medium), 3. (Hard): ")
+    level_list = ['1', '2', '3']
+    if level in level_list:
+        return level
+    else:
+        print("Please select 1, 2, or 3.")
+        corrected_level = select_level()
+        return corrected_level
+
+
 # This function selects a word at random from the file it is passed
-def choose_random_word(file):
+def choose_random_word(file, level):
     # open and read the file
     with open (file, 'r') as reader:
         open_doc = reader.read()
     # with new string convert it to a list of strings all upper case
     new_list = open_doc.upper().split()
-    # print(new_list)
-    # choose a random word based on the index in the new list
-    answer = new_list[random.randint(0, len(new_list))]
+    # Create word lists for each level
+    easy_level_list = [word for word in new_list if len(word) < 7 and len(word) > 3]
+    medium_level_list = [word for word in new_list if len(word) < 9 and len(word) > 5]
+    hard_level_list = [word for word in new_list if len(word) > 7]
+    # choose a random word based on the index in the new list and level
+    if level == "1":
+        answer = easy_level_list[random.randint(0, len(easy_level_list))]
+    elif level == "2":
+        answer = medium_level_list[random.randint(0, len(medium_level_list))]
+    else:
+        answer = hard_level_list[random.randint(0, len(hard_level_list))]
     return answer
 
 
@@ -102,9 +122,11 @@ def keep_playing():
 
 # Play the game
 def play_game(file):
+    print("What difficulty would you like?")
+    validated_level = select_level()
     guess_count = 8
     print("Incorrect Guesses Remaining: ", guess_count)
-    answer = choose_random_word(file)
+    answer = choose_random_word(file, validated_level)
     answer_list = create_answer_list(answer)
     new_answer_display = convert_answer(answer_list)
     print(new_answer_display)
