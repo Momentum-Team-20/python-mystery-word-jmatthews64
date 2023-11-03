@@ -1,6 +1,5 @@
 import random
 
-already_guessed = []
 game_on = True
 
 
@@ -137,6 +136,7 @@ if __name__ == "__main__":
     file = Path(args.file)
     if file.is_file():
         while game_on == True:
+            already_guessed = []
             play_game(file)
             keep_playing()
     else:
