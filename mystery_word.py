@@ -1,6 +1,7 @@
 import random
 
 already_guessed = []
+game_on = True
 
 
 # This function selects a word at random from the file it is passed
@@ -91,6 +92,15 @@ def update_guess_count(guess_count, answer_list, guess):
     return guess_count
 
 
+# Function to run game again
+def keep_playing():
+    play_again = input("Do you want to play again (Y or N)? ")
+    play_again = play_again.upper()
+    if play_again == "N":
+        print("Goodbye!")
+        quit()
+
+
 # Play the game
 def play_game(file):
     guess_count = 8
@@ -126,7 +136,9 @@ if __name__ == "__main__":
 
     file = Path(args.file)
     if file.is_file():
-        play_game(file)
+        while game_on == True:
+            play_game(file)
+            keep_playing()
     else:
         print(f"{file} does not exist!")
         exit(1)
